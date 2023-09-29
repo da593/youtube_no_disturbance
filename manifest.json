@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Youtube No Disturbance",
+  "description": "An extension to automatically skip skippable ads, mute ads, and press continue watching",
+  "version": "1.0",
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+      "default_popup": "popup/popup.html",
+      "default_icon": "images/youtube_icon.png"
+    },
+    "background": {
+      "service_worker": "service-worker.js",
+      "type": "module"
+    },
+    "content_scripts": [
+      {
+        "js": ["scripts/content.js"],
+        "matches": [
+          "https://youtube.com/watch*"
+        ]
+      }
+    ]
+}

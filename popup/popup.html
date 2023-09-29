@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <h2>Options</h2>
+    <p>The selected options will automatically run for each running youtube video</p>
+    <div class="grid">
+        <div class="input-container">
+            <label> Skip (skippable) Ads </label>
+            <input type="checkbox" id="skip-ad">
+        </div>
+
+        <div class="input-container">
+            <label class="container"> Mute Ads </label>
+            <input type="checkbox" id="mute-ad">
+        </div>
+
+        <div class="input-container">
+            <label class="container"> Block Auto Pause </label>
+            <input type="checkbox" id="block-pause">
+        </div>
+    </div>
+    <script src="./popup.js"></script>
+  </body>
+</html>
