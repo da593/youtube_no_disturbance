@@ -13,13 +13,5 @@
     "background": {
       "service_worker": "service-worker.js",
       "type": "module"
-    },
-    "content_scripts": [
-      {
-        "js": ["scripts/content.js"],
-        "matches": [
-          "https://youtube.com/watch*"
-        ]
-      }
-    ]
+    }
 }
