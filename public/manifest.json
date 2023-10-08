@@ -16,7 +16,7 @@
       {
         "js": ["content_script.js"],
         "matches": ["https://www.youtube.com/*"],
-        "runAt": "document_end"
+        "run_at": "document_end"
       }
     ],
     "icons": {
