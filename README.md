@@ -20,4 +20,4 @@ npm run build
 The below are currently supported for Chrome Browsers.
 * Skip (skippable) ads instantly
 * Mute ads playing
-* Block Youtube's "Continue Watching" popup confirmation
+* Block YouTube's "Continue Watching" popup confirmation
