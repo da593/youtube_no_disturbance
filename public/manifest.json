@@ -1,7 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Youtube No Disturbance",
-  "description": "An extension to automatically skip skippable ads, mute ads, and press continue watching",
+  "description": "An extension to automatically skip (skippable) ads, mute ads, and block \"Continue Watching\" popup. Supported for Firefox and Chrome",
+  "homepage_url": "https://github.com/da593",
   "version": "1.0",
   "host_permissions": ["https://www.youtube.com/*"],
   "permissions": [
@@ -21,5 +22,10 @@
     ],
     "icons": {
       "48": "youtube_icon.png"
+    },
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "youtubenodisturbance@example.com"
+      }
     }
 }
