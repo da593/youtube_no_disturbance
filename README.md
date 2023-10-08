@@ -1,19 +1,20 @@
-# Chrome store 
-The plugin can be installed at:
+# Install published extension (Firefox only)
+The plugin can be installed at: 
 
-# How to install plugin locally
+# How to install extension locally (Firefox and Chrome)
 1. Clone the repo
-2. To build a "dist" folder, run the following on the command line:
+
+2. Build a "dist" folder by running the following commands at the project root on a command line:
+```
+npm install
+``` 
 ```
 npm run build
 ``` 
-3. Open a chrome browser
-4. Navigate to [chrome://extensions/](chrome://extensions/) 
-5. Enable Developer mode
-6. Press load unpacked and select the dist folder that was built in step 2
-7. Click the extension on the extension toolbar
-8. Select the extension's options you want
-9. Navigate to Youtube and enjoy the enabled features.
+
+3. To load the extension for Chrome users, open the [chrome://extensions](chrome://extensions), enable "Developer mode", click the "Load unpacked" button, and select the dist folder generated in step 2 as the extension directory
+
+4. To load the extension for Firefox users, open the [about:debugging](about:debugging) page, click the "This Firefox" option, click the Load Temporary Add-on button, then select any file in the dist folder generated in step 2.
 
 # Features
 The below are currently supported for Chrome Browsers.
