@@ -18,5 +18,8 @@
         "matches": ["https://www.youtube.com/*"],
         "runAt": "document_end"
       }
-    ]
+    ],
+    "icons": {
+      "48": "youtube_icon.png"
+    }
 }
