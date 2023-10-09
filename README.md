@@ -1,5 +1,5 @@
-# Install published extension (Firefox only)
-The plugin can be installed at: 
+# Product installation (Firefox only)
+The product page for Firefox users: [https://addons.mozilla.org/en-US/firefox/addon/youtube-no-disturbance/](https://addons.mozilla.org/en-US/firefox/addon/youtube-no-disturbance/)
 
 # How to install extension locally (Firefox and Chrome)
 1. Clone the repo
