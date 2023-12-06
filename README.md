@@ -17,7 +17,7 @@ npm run build
 4. To load the extension for Firefox users, open the [about:debugging](about:debugging) page, click the "This Firefox" option, click the Load Temporary Add-on button, then select any file in the dist folder generated in step 2.
 
 # Features
-The below are currently supported for Chrome Browsers.
+The below are currently supported for Firefox and Chrome Browsers.
 * Skip (skippable) ads instantly
 * Mute ads playing
 * Block YouTube's "Continue Watching" popup confirmation
