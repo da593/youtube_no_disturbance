@@ -1,7 +1,7 @@
 {
   "name": "youtube_no_disturbance",
   "version": "1.0.0",
-  "description": "An extension to automatically skip (skippable) ads, mute ads, and block \"Continue Watching\" popup on YouTube. Supported for Firefox and Chrome",
+  "description": "An extension to automatically skip (skippable) ads, mute ads, and block \"Continue Watching\" popup on YouTube. Supported for Firefox",
   "scripts": {
     "watch": "webpack --config webpack/webpack.config.js --watch",
     "build": "webpack --config webpack/webpack.config.js"
@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/chrome": "^0.0.246",
+    "@types/firefox-webext-browser": "^120.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "ts-loader": "^9.4.4",
     "typescript": "^5.2.2",
