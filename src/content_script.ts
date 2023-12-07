@@ -5,27 +5,29 @@ let userOptions: Record<string, boolean> = {
 }
 
 let video_player_container: HTMLElement | null //attributes change when ad is showing
-let mainVideo: HTMLVideoElement  //always video available if movie_player is available
+let mainVideo: HTMLVideoElement  //video always available if movie_player is available
 let skipButton: HTMLInputElement | null  //when ad is showing
 let confirmButton: HTMLElement | null  //when video is paused
 
 let videoObserver: MutationObserver;
 
 
-chrome.storage.sync.get().then((items) => {
+browser.storage.sync.get().then((items) => {
     userOptions["skip_ad"] = items["skip_ad"];
     userOptions["mute_ad"] = items["mute_ad"];
     userOptions["block_pause"] = items["block_pause"];
+    console.log(userOptions);
     resetScript();
 })
 
-chrome.storage.onChanged.addListener((changes, namespace) => {
+browser.storage.onChanged.addListener((changes, namespace) => {
     for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
         userOptions[key] = newValue
     }
     if (!userOptions["mute_ad"] && mainVideo ) {
         mainVideo.muted = false;
     }
+    console.log(userOptions);
     teardown()
     resetScript();
 });
@@ -62,7 +64,8 @@ function handleAd() {
                 }
 
                 if (userOptions["skip_ad"]) {
-                    const skipButton: HTMLInputElement | null = document.querySelector("button.ytp-ad-skip-button") as HTMLInputElement;
+                    const skipButton: HTMLInputElement | null = document.querySelector('button[class*="ytp-ad-skip-button"') as HTMLInputElement;
+                    console.log(skipButton)
                     if (skipButton) {
                         console.log("skip")
                         skipButton.click();
@@ -84,7 +87,7 @@ function observeForVideoPlayer() {
     new MutationObserver(function(mutations: MutationRecord[], observer: MutationObserver) {
         video_player_container = document.getElementById("movie_player");
         if (video_player_container) {
-            mainVideo = document.querySelector("video.html5-main-video") as HTMLVideoElement;
+            mainVideo = document.querySelector('video[class*="html5-main-video"]') as HTMLVideoElement;
             if (mainVideo) {
                 observer.disconnect();
                 videoPlaying();
