@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "YouTube No Disturbance",
-  "description": "An extension to automatically skip (skippable) ads, mute ads, and block \"Continue Watching\" popup on YouTube. Supported for Firefox and Chrome",
-  "homepage_url": "https://github.com/da593",
+  "description": "An extension to automatically skip (skippable) ads, mute ads, and block \"Continue Watching\" popup on YouTube. Supported for Firefox",
+  "homepage_url": "https://github.com/da593/youtube_no_disturbance",
   "version": "1.0",
   "host_permissions": ["https://www.youtube.com/*"],
   "permissions": [
