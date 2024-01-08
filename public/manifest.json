@@ -3,20 +3,25 @@
   "name": "YouTube No Disturbance",
   "description": "An extension to automatically skip (skippable) ads, mute ads, and block \"Continue Watching\" popup on YouTube. Supported for Firefox",
   "homepage_url": "https://github.com/da593/youtube_no_disturbance",
-  "version": "1.0",
+  "version": "1.1",
   "host_permissions": ["https://www.youtube.com/*"],
   "permissions": [
-    "storage",
-    "scripting"
+    "identity",
+    "scripting",
+    "storage"
   ],
   "action": {
       "default_popup": "popup.html",
       "default_icon": "youtube_icon.png"
     },
+    "options_ui": {
+      "page": "options.html",
+      "open_in_tab": true
+    },    
     "content_scripts": [
       {
-        "js": ["content_script.js"],
         "matches": ["https://www.youtube.com/*"],
+        "js": ["content_script.js"],
         "run_at": "document_end"
       }
     ],

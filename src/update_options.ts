@@ -1,7 +1,6 @@
-const options = document.querySelectorAll("input[type=checkbox]") as NodeListOf<HTMLInputElement> ;
-
 // Asynchronously retrieve data from storage.sync, then cache it.
 browser.storage.sync.get().then((items) => {
+    const options = document.querySelectorAll("input[type=checkbox]") as NodeListOf<HTMLInputElement>;
     options.forEach(currentValue => {
 
         const option: HTMLInputElement | null = document.querySelector("[id="+currentValue.id) as HTMLInputElement;

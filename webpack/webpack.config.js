@@ -7,22 +7,17 @@ const distDir = path.join(__dirname, "..", "dist")
 module.exports = {
    mode: "production",
    entry: {
-      popup: path.join(srcDir, 'popup.ts'),
-      //background: path.join(srcDir, 'background.ts'),
-      content_script: path.join(srcDir, 'content_script.ts')
+        content_script: path.join(srcDir, 'content_script.ts'),
+        to_option_page: path.join(srcDir, 'to_option_page.ts'),
+        update_options: path.join(srcDir, 'update_options.ts'),
+        whitelist: path.join(srcDir, 'whitelist.ts')
     },
     output: {
         path: distDir,
-        filename: "[name].js",
-        clean: true
-    },
-    optimization: {
-        splitChunks: {
-            name: "vendor",
-            chunks(chunk) {
-              return chunk.name !== 'background';
-            }
+        filename: ({ chunk: { name } }) => {
+            return name !== 'whitelist' ? '[name].js': 'editor.bundle.js';
         },
+        clean: true
     },
     module: {
         rules: [
@@ -34,6 +29,7 @@ module.exports = {
         ],
     },
     resolve: {
+        modules: ['node_modules'],
         extensions: [".ts", ".tsx", ".js"],
     },
     plugins: [

@@ -7,8 +7,12 @@ body {
     color: white;
     background-color: #282c34;
     min-width: max-content;
-    font-size: calc(10px + 2vmin);
+    font-size: calc(12px + 2vmin);
     padding: 0px 15px;
+}
+
+input:hover, button:hover {
+    cursor: pointer;
 }
 
 label {
@@ -18,12 +22,25 @@ label {
 
 .grid {
     display: grid;
+}
 
+.margin-bottom {
+    margin-bottom: 3%;
 }
 
 .input-container {
     display: flex;
     justify-content: space-between;
     margin: 5px 5px;
+}
 
+#options_button {
+    color: white;
+    font-size: calc(15px + 2vmin);
+    background: #1a1d21;
+    padding: 10px 10px;
+}
+
+#options_button:hover {
+    border-color: orangered;
 }

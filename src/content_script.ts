@@ -3,34 +3,46 @@ let userOptions: Record<string, boolean> = {
     "mute_ad": false,
     "block_pause": false,
 }
+let whitelist: Set<string>;
 
 let video_player_container: HTMLElement | null //attributes change when ad is showing
 let mainVideo: HTMLVideoElement  //video always available if movie_player is available
 let skipButton: HTMLInputElement | null  //when ad is showing
 let confirmButton: HTMLElement | null  //when video is paused
 
+
 let videoObserver: MutationObserver;
+
 
 
 browser.storage.sync.get().then((items) => {
     userOptions["skip_ad"] = items["skip_ad"];
     userOptions["mute_ad"] = items["mute_ad"];
     userOptions["block_pause"] = items["block_pause"];
-    console.log(userOptions);
+    whitelist = convertStringToSet(items["whitelist"]);
     resetScript();
 })
 
 browser.storage.onChanged.addListener((changes, namespace) => {
     for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
-        userOptions[key] = newValue
+        if (key === "whitelist") {
+            whitelist = convertStringToSet(newValue);
+        } 
+        else {
+            userOptions[key] = newValue
+        }
     }
     if (!userOptions["mute_ad"] && mainVideo ) {
         mainVideo.muted = false;
     }
-    console.log(userOptions);
     teardown()
     resetScript();
 });
+
+function convertStringToSet(str: string): Set<string> {
+    const listOfSubscriptions = str.split("\n");
+    return new Set(listOfSubscriptions);
+}
 
 function teardown() {
     if (!userOptions["skip_ad"] && !userOptions["mute_ad"] && !userOptions["block_pause"]) {
@@ -42,10 +54,11 @@ function teardown() {
     
 }
 
+
+
 function handlePause() {
     const confirmButton = document.getElementById("confirm-button");
     if (confirmButton) {
-        console.log("block pause")
         confirmButton.click()
     }
 }
@@ -57,18 +70,19 @@ function handleAd() {
                                 || video_player_container.classList.contains("ad-showing") 
                                 || video_player_container.classList.contains("ad-interrupting");
             if (isAd) {
-
                 if (userOptions["mute_ad"]) {
-                    console.log("mute")
                     mainVideo.muted = true;
                 }
-
                 if (userOptions["skip_ad"]) {
-                    const skipButton: HTMLInputElement | null = document.querySelector('button[class*="ytp-ad-skip-button"') as HTMLInputElement;
-                    console.log(skipButton)
-                    if (skipButton) {
-                        console.log("skip")
-                        skipButton.click();
+                    const channel_info: Element | null | undefined = document.getElementById('channel-info')?.querySelector("#text.style-scope.ytd-channel-name");
+                    if (channel_info) {
+                        const channel_name: string | null = channel_info.textContent;
+                        if (channel_name && !whitelist.has(channel_name)) {
+                            const skipButton: HTMLInputElement | null = document.querySelector('button[class*="ytp-ad-skip-button"') as HTMLInputElement;
+                            if (skipButton) {
+                                skipButton.click();
+                            }
+                        }
                     }
                 }
                 
@@ -110,7 +124,6 @@ function videoPlaying() {
         }
         const options = {attributes: true};
         videoObserver.observe(video_player_container, options);
-
     }
 }
 

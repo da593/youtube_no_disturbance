@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./options.css" />
+  </head>
+  <body>
+
+
+    <div id="whitelist">
+
+      <div class="popup" id="subscription-form">
+        <div class="popup-content">
+          <button class="grid-button float-right" id="close-button">X</button>
+          <div class="grid">
+            <label> 
+              Enter your YouTube Channel Page URL to whitelist all your subscriptions (eg: https://www.youtube.com/channel/UCAuUUnT6oDeKwE6v1NGQxug)
+            </label>
+            <label>
+              (A channel page is needed to access the subscriber list:
+                <a href="https://support.google.com/youtube/answer/1646861?hl=en" target="_blank" rel="noopener noreferrer">Create a personal channel</a>)
+            </label>
+            <input type="text" class="grid-input" id="url_add">
+            <button class="grid-button" id="submit-subscription-list">Add subscriptions to changes</button>
+            <div id="status"></div>
+          </div>
+        </div>
+      </div>
+
+
+      <h2>Whitelist Youtube Channels From Skipping Ads</h2>
+
+      <p> 
+        Add the YouTuber's Channel Name (eg: Dude Perfect). One entry per line.
+      </p>
+
+      <div class="flex margin-bottom">
+        <button id="apply-changes">Apply changes</button>
+        <button id="revert-changes">Revert changes</button>
+        <button id="open-subscription-form">Add your YouTube subscriptions to changes</button>
+      </div>
+
+      <div id="editor">
+
+      </div>
+
+      
+    </div>
+
+    <script src="editor.bundle.js"></script>
+  </body>
+</html>

@@ -7,8 +7,8 @@
   </head>
   <body>
     <h2>Options</h2>
-    <p>The selected options will automatically run for each running YouTube video</p>
-    <div class="grid">
+    <p>The selected options will automatically run for each running YouTube video.</p>
+    <div class="grid margin-bottom">
         <div class="input-container">
             <label> Skip (skippable) Ads </label>
             <input type="checkbox" id="skip_ad">
@@ -24,6 +24,10 @@
             <input type="checkbox" id="block_pause">
         </div>
     </div>
-    <script src="./popup.js"></script>
+    <div class="grid">
+      <button id="options_button">Whitelist channels from skipping ads</button>
+    </div>
+    <script src="./update_options.js"></script>
+    <script src="./to_option_page.js"></script>
   </body>
 </html>
