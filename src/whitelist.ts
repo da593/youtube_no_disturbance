@@ -147,8 +147,8 @@ function getAccessToken() {
   return authorize().then(validate);
 }
 
-function getUserInfo(accessToken: string, channel_id: string): Promise<Array<any>> {
-  const requestURL: string = "https://youtube.googleapis.com/youtube/v3/subscriptions?part=snippet&channelId=" + channel_id;
+function getUserInfo(accessToken: string): Promise<Array<any>> {
+  const requestURL: string = "https://youtube.googleapis.com/youtube/v3/subscriptions?part=snippet&mine=true";
   const requestHeaders: Headers = new Headers();
   requestHeaders.append('Authorization', 'Bearer ' + accessToken);
   requestHeaders.append("Content-Type", "application/json");
@@ -192,24 +192,18 @@ function getSubscriptions(userData: Array<any>): Array<string> {
   return subscriptionList
 }
 
-function addSubscriptionsToChanges() {
-  const inputted_url: HTMLInputElement  = document.getElementById("url_add") as HTMLInputElement;
-  const url: string = inputted_url.value.trim();
-  const split_url: Array<string> = url.split("/");
-  if (split_url.length >= 3 && split_url.at(-2) === "channel") {
-    const channel_id: string = split_url.at(-1) as string;
-    getAccessToken()
-    .then((access_token) => getUserInfo(access_token, channel_id))
-    .then((userData) => {
-      if (userData.length > 0) {
-        const subscriptionList = getSubscriptions(userData);
-        addChanges(subscriptionList);
-      }
-    })
-  }
-  else {
-    displaySuccessStatus(false)
-  }
+function googleSignIn() {
+  getAccessToken()
+  .then((access_token) => getUserInfo(access_token))
+  .then((userData) => {
+    if (userData.length > 0) {
+      const subscriptionList = getSubscriptions(userData);
+      addChanges(subscriptionList);
+    }
+    else {
+      displaySuccessStatus(false)
+    }
+  })
 }
 
 function openSubscriptionForm() {
@@ -234,7 +228,7 @@ function displaySuccessStatus(isSuccess: boolean) {
   }
   else {
     statusDiv.style.color = "red"
-    statusDiv.innerText = "FAILED"
+    statusDiv.innerText = "FAILED! NO SUBSCRIPTIONS OBTAINED!"
   }
   setTimeout(() => {
     statusDiv.innerText = ""
@@ -254,9 +248,8 @@ function addButtonListeners() {
   const close_popup = document.getElementById("close-button") as HTMLElement;
   close_popup.addEventListener("click", closeSubscriptionForm);
 
-  const submit_subscription = document.getElementById("submit-subscription-list") as HTMLElement;
-  submit_subscription.addEventListener("click", addSubscriptionsToChanges);
-
+  const google_sign_in = document.getElementById("google-sign-in") as HTMLElement;
+  google_sign_in.addEventListener("click", googleSignIn);
 }
 
 addButtonListeners();
