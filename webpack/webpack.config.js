@@ -10,7 +10,8 @@ module.exports = {
         content_script: path.join(srcDir, 'content_script.ts'),
         to_option_page: path.join(srcDir, 'to_option_page.ts'),
         update_options: path.join(srcDir, 'update_options.ts'),
-        whitelist: path.join(srcDir, 'whitelist.ts')
+        whitelist: path.join(srcDir, 'whitelist.ts'),
+        new_install_script: path.join(srcDir, 'new_install_script.ts')
     },
     output: {
         path: distDir,
