@@ -14,7 +14,3 @@ browser.storage.sync.get().then((items) => {
         
     })
 });
-
-
-
-

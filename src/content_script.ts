@@ -13,8 +13,6 @@ let confirmButton: HTMLElement | null  //when video is paused
 
 let videoObserver: MutationObserver;
 
-
-
 browser.storage.sync.get().then((items) => {
     userOptions["skip_ad"] = items["skip_ad"];
     userOptions["mute_ad"] = items["mute_ad"];
@@ -40,8 +38,13 @@ browser.storage.onChanged.addListener((changes, namespace) => {
 });
 
 function convertStringToSet(str: string): Set<string> {
-    const listOfSubscriptions = str.split("\n");
-    return new Set(listOfSubscriptions);
+    if (str) {
+        const listOfSubscriptions = str.split("\n").filter(e => e);
+        return new Set(listOfSubscriptions);
+    }
+    else {
+        return new Set();
+    }
 }
 
 function teardown() {
